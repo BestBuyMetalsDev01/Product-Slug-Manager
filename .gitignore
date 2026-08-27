@@ -1,0 +1,14 @@
+# Node / Clasp
+.clasprc.json
+node_modules/
+package-lock.json
+
+# Environment & Config
+.env
+.env.local
+.env.*.local
+
+# OS / Logs
+.DS_Store
+Thumbs.db
+*.log
