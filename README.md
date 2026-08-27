@@ -3,7 +3,6 @@
 | Metric / Attribute | Details |
 | :--- | :--- |
 | **Project Sponsors** | Operations, Marketing & RevOps Leadership |
-| **Target Timeline** | 4 Weeks |
 | **Key Stakeholders** | Purchasing / Procurement, Marketing, Full-Stack / Backend Engineering, CRM / SalesOps Admin |
 | **Core Stack** | Purchasing Web Tool, Supabase (PostgreSQL + Edge Functions), Paradigm ERP, HubSpot CRM |
 
