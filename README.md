@@ -21,24 +21,28 @@ This project centralizes product taxonomy governance, automated ERP provisioning
 
 ```mermaid
 flowchart TD
-    subgraph Taxonomy_Creation["1. Taxonomy Governance & ERP Provisioning"]
+    subgraph Engine ["Product Taxonomy Governance & Lead Ingestion Engine"]
+        direction TB
+
+        %% Phase 1: Taxonomy Governance
         A["Purchasing Web Tool<br/><i>(User enters product & auto-generates slug)</i>"]
         B["Paradigm ERP<br/><i>(Subcategory created via API sync)</i>"]
         C[("Supabase Database<br/><i>(Master Taxonomy Store & Unique Validation)</i>")]
         D["Slack / Email Alert<br/><i>(Dispatched to Marketing w/ embed snippet)</i>"]
-        
+
         A -->|Provision subcategory| B
         A -->|Validate & store slug| C
         C -->|DB Trigger / Webhook| D
-    end
 
-    subgraph Inquiry_Ingestion["2. Lead Filtering & HubSpot Ingestion"]
+        %% Bridge
+        D ==>|Marketing embeds asset on site| E
+
+        %% Phase 2: Inquiry Ingestion & CRM Routing
         E["Web Product Inquiry Form<br/><i>(Hidden product_slug embedded)</i>"]
         F["Supabase Edge Function<br/><i>(Validation, Deduplication & Spam Filter)</i>"]
         G["HubSpot Contact / Inquiry<br/><i>(Created/Updated w/ Subcategory)</i>"]
         H["HubSpot Sales Deal<br/><i>(Created in Pipeline & Stage Routed)</i>"]
-        
-        D -.->|Marketing embeds asset| E
+
         E -->|POST Submission| F
         F -->|Upsert Contact| G
         F -->|Create Deal| H
